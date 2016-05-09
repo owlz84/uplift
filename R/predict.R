@@ -66,6 +66,7 @@ predict.upliftRF <- function(object, newdata, n.trees = object$ntree, predict.al
   pred.sum <- matrix(rep(0, nr_samples_t) * 2, nrow = nr_samples_t, ncol = 2, 
                      dimnames = list(NULL, c("pr.y1_ct1", "pr.y1_ct0")))
   for (i in 1:length(pred.trees.t)) {
+    print(paste0("computing prediction for observation ",i," of ",length(pred.trees.t)))
     pred.sum.temp <- pred.trees.t[[i]]
     pred.sum <- pred.sum + pred.sum.temp 
   }
