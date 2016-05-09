@@ -38,7 +38,7 @@ predict.upliftRF <- function(object, newdata, n.trees = object$ntree, predict.al
     ### Assign observations to terminal nodes
     ly <- object$trees[[i]]$total_nr_nodes
     for (curr_node_t in 1:ly) { 
-      print(paste0("Tree",i,"of",lx,"| Node",curr_node_t,"of",ly))
+      print(paste0("Tree",i,"of",lx,"| Node",curr_node_t,"of",ly, collapse = " "))
       obs_curr_node.ind_t <- which(obs_node_t == object$trees[[i]]$s_curr_node[curr_node_t]) 
       if (object$trees[[i]]$s_node_status[curr_node_t] == 1) {
         if (is.numeric(object$trees[[i]]$s_bs.x.value[[curr_node_t]])) {
@@ -66,7 +66,7 @@ predict.upliftRF <- function(object, newdata, n.trees = object$ntree, predict.al
   pred.sum <- matrix(rep(0, nr_samples_t) * 2, nrow = nr_samples_t, ncol = 2, 
                      dimnames = list(NULL, c("pr.y1_ct1", "pr.y1_ct0")))
   for (i in 1:length(pred.trees.t)) {
-    print(paste0("computing prediction for observation ",i," of ",length(pred.trees.t)))
+    print(paste0("computing prediction for observation",i,"of",length(pred.trees.t), collapse = " "))
     pred.sum.temp <- pred.trees.t[[i]]
     pred.sum <- pred.sum + pred.sum.temp 
   }
